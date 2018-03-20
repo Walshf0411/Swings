@@ -16,14 +16,43 @@ public class MainScreen extends JFrame implements ActionListener{
     JTextField txt;
     JPasswordField pwd;
     JButton btn;
-    String name;
-    String pass;
-    MainScreen(){
+    public MainScreen(){
         panel = new JPanel();
         panel.setBounds(20, 20, 360, 300);
         panel.setLayout(null);
         
-        //label for name textfield
+        addComponents();
+        
+        panel.add(lbl1);
+        panel.add(lbl2);
+        panel.add(txt);
+        panel.add(pwd);
+        panel.add(btn);
+        panel.add(lbl3);
+        add(panel);
+        
+        setSize(400, 350);
+        setTitle("Login Form");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+   } 
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        String name, pass;
+        name = txt.getText();
+        pass = pwd.getText();
+        if(name.equals("Admin") && pass.equals("1234")){
+            setVisible(false);
+            new HomeScreen();
+        }
+        else{
+            lbl3.setText("Invalid Credentials");
+        }
+    }
+
+    private void addComponents() {
+          //label for name textfield
         lbl1 = new JLabel("Enter name:");
         lbl1.setBounds(50, 50, 150, 40);
 
@@ -46,26 +75,6 @@ public class MainScreen extends JFrame implements ActionListener{
         
         lbl3 = new JLabel("");
         lbl3.setBounds( 100, 250, 250, 40);
-        
-        panel.add(lbl1);
-        panel.add(lbl2);
-        panel.add(txt);
-        panel.add(pwd);
-        panel.add(btn);
-        panel.add(lbl3);
-        add(panel);
-        
-        setSize(400, 350);
-        setTitle("Login Form");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-   } 
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        name = txt.getText();
-        pass = pwd.getText();
-        lbl3.setText("Name : "+name+" -- Password : "+pass);
     }
 
    
